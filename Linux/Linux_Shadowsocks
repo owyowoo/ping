@@ -1,0 +1,17 @@
+apt-get install python-gevent python-pip//安装
+apt-get install python-m2cryptocd
+pip install shadowsocks
+
+//配置
+{
+    "server" : "my_server_ip",
+    "server_port" : "8888",
+    "local_port" : "1080",
+    "password" : "password",
+    "timeout" : "600",
+    "method" : "aes-256-cfb"
+}
+
+启动
+nohup ssserver -c /usr/local/lib/python3.4/dist-packages/shadowsocks/config.json > log &
+

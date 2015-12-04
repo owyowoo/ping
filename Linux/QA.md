@@ -1,0 +1,1 @@
+Q:php作为apahce模块运行与CGI和CLI的不同之处

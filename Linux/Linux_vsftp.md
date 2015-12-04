@@ -1,6 +1,6 @@
 vsftp安装
-$ sudo apt-get install vsftpd
-$ sudo netstat -npltu | grep 21
+sudo apt-get install vsftpd
+sudo netstat -npltu | grep 21
 ftp localhost
 
 1.standalone
@@ -95,7 +95,7 @@ rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.ke
 2.示例1：只允许登录用户在家目录内上传下载
     1.创建用户
     useradd NovaRoma//新增用户
-    passwd NovaRoma//设置密码:Constantinople
+    passwd NovaRoma//设置密码:
 
     gpasswd -a NovaRoma ftp//用户添加到管理组
 
