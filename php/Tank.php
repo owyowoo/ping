@@ -306,5 +306,217 @@ $subject->notify();
 
 
 /**
-观察者
+注册器／树
  */
+class Register
+{
+    protected static $objects
+
+    static function set($alias, $object)
+    {
+        self::$objects[$alias] = $object;
+    }
+
+    static function get($alias)
+    {
+        return self::$objects[$alias];
+    }
+
+    static function _unset($alias)
+    {
+        unset(self::$objects[$alias]);
+    }
+}
+
+
+/**
+适配器-统一口径[mysql, mysqli, PDO]
+ */
+
+interface Vehicle
+{
+    function run(){};
+    function turn(){};
+    function fire(){};
+}
+
+class Tank implements Vehicle
+{
+    function run(){};
+    function turn(){};
+    function fire(){};
+}
+
+class Td implements Vehicle
+{
+    function run(){};
+    function turn(){};
+    function fire(){};
+}
+
+class Spg implements Vehicle
+{
+    function run(){};
+    function turn(){};
+    function fire(){};
+}
+
+/**
+策略模式-Ioc,DI
+ */
+interface Tank {
+    public function execute();
+}
+
+class HeavyTank implements Tank {
+    public function execute() {
+        echo "Fire";
+    }
+}
+
+class MiddleTank implements Tank {
+    public function execute() {
+        echo "Run";
+    }
+}
+
+class LightTank implements Tank {
+    public function execute() {
+        echo "Spy";
+    }
+}
+
+class Task {
+    public $tank;
+
+    public function __construct(Tank $tank) {
+        $this->tank = $tank;
+    }
+
+    public function execute() {
+        $this->tank->execute();
+    }
+}
+
+$context = new Context(new HeavyTank());
+$context->execute();
+
+/**
+数据对象映射-ORM
+ */
+
+
+/**
+原型模式-clone[减少实例化，初始化的消耗]
+ */
+$proto_tank = new SuperTank();
+$proto_tank->init();
+
+$tiger1 = clone $proto_tank;
+$tiger2 = clone $proto_tank;
+
+
+/**
+装饰器--坦克配件
+ */
+interface TankDecorator
+{
+    function beforeFire(){};
+    function afterFire(){};
+}
+
+class Camouflage implements TankDecorator
+{
+    function beforeFire(){};
+    function afterFire(){};
+}
+
+class Bincular implements TankDecorator
+{
+    function beforeFire(){};
+    function afterFire(){};
+}
+
+class Tank
+{
+    protected $decorators;
+    function addDecorators(TankDecorator $decorator)
+    {
+        $this->decorators = $decorator;
+    }
+
+    function beforeFire()
+    {
+        foreach ($this->decorators as $decorator) {
+            $decorator->beforeFire();
+        }
+    }
+
+    function afterFire()
+    {
+        $decorators = array_reverse($this->decorators);
+        foreach ($decorators as $decorator) {
+            $decorator->afterFire();
+        }
+    }
+
+    function fire()
+    {
+        $this->beforeFire();
+        echo 'fire';
+        $this->afterFire();
+    }
+}
+
+$tank = new Tank();
+$tank->addDecorators(new Camouflage());
+$tank->fire();
+
+/**
+迭代器
+ */
+class TaskList implements Iterator
+{
+    function current(){};
+    function next(){};
+    function valid(){};
+    function rewind(){};
+    function key(){};
+}
+
+/**
+代理-proxy[数据库读写分离]
+ */
+interface TankProxy
+{
+
+}
+
+class Proxy implements TankProxy
+{
+    public function fire()
+    {
+       echo 'use HeavyTank'; 
+    }
+
+    public function spy()
+    {
+        echo 'use LightTank';
+    }
+}
+
+$proxy = new Proxy()
+$proxy->fire();
+$proxy->spy();
+
+
+
+
+
+
+
+
+
+
+
+
