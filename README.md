@@ -16,3 +16,4 @@ OS
 DSA(DataStructures And Algorithms)
 Compiler
 
+----English, Math----
