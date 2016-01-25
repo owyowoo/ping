@@ -17,3 +17,7 @@ DSA(DataStructures And Algorithms)
 Compiler
 
 ----English, Math----
+
+
+web架构方案
+angular.js  ====  php   ====  Linux
