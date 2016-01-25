@@ -20,6 +20,7 @@ Compiler
 
 
 web架构方案
+
 前端：angular.js  ioinc  brew  node.js  bootstrap  jquery  sass
 
 后端：php  laravel  linux  memache  redis  apache  nginx
